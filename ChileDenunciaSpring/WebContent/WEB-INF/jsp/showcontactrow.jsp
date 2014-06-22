@@ -84,7 +84,7 @@
             <td>${contact.ciudad}</td>
             <td>${contact.sector}</td>
             <td>${contact.denuncia}</td>
-
+           
           	</tr>
 
 			</c:forEach>

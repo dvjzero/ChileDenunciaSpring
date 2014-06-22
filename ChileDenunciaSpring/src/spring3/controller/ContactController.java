@@ -1,6 +1,7 @@
 package spring3.controller;
  
 //import net.viralpatel.spring3.form.Contact;
+import java.lang.ProcessBuilder.Redirect;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,11 +17,20 @@ import spring3.form.ContactForm;
 
 
 
+
+
+
+
+
+
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,6 +39,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
+
+
+import org.springframework.web.servlet.view.RedirectView;
 
 import webservice.ServicioDenunciaStub;
 import webservice.ServicioDenunciaStub.AgregarDenuncia;
@@ -40,6 +53,9 @@ import webservice.ServicioDenunciaStub.EliminarDenuncia;
 import webservice.ServicioDenunciaStub.EliminarDenunciaResponse;
 import webservice.ServicioDenunciaStub.FiltrarDenuncia;
 import webservice.ServicioDenunciaStub.FiltrarDenunciaResponse;
+import webservice.ServicioUsuarioStub;
+import webservice.ServicioUsuarioStub.EliminarUsuario;
+import webservice.ServicioUsuarioStub.EliminarUsuarioResponse;
 import webservice.ServicioUsuarioStub.UsuarioVO;
 
 
@@ -212,8 +228,8 @@ public class ContactController {
 			
 		}
     }
-    
-    
+	
+   
     
 
 }

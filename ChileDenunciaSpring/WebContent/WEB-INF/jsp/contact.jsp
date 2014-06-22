@@ -40,6 +40,7 @@
 				style="padding-left: 20px; padding-right: 20px;">¿Quiénes somos?</a></li>
 		</ul>
 	</div>
+	${message}
 	<form:form method="post" action="addContact.html">
 		<div align="center">
 			<div class="container">

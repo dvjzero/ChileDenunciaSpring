@@ -10,6 +10,8 @@ package spring3.form;
 public class Contact implements java.io.Serializable {
 	 
     private java.lang.String type;
+    
+    private  int id;
   
     private java.lang.String complaint;
  
@@ -47,6 +49,21 @@ public class Contact implements java.io.Serializable {
 		this.users_modifies = users_modifies;
 		this.modification_date = modification_date;
 		this.off = off;
+		
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**

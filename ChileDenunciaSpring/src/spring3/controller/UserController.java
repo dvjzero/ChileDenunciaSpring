@@ -9,6 +9,11 @@ import javax.validation.Valid;
 
 
 
+
+
+
+
+
 import spring3.form.User;
 import spring3.form.UserForm;
 
@@ -17,10 +22,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 
+
+import org.springframework.web.servlet.view.RedirectView;
 
 import webservice.ServicioDenunciaStub;
 import webservice.ServicioDenunciaStub.AgregarDenuncia;
@@ -37,13 +45,14 @@ import webservice.ServicioDenunciaStub.FiltrarDenunciaResponse;
 import webservice.ServicioUsuarioStub;
 import webservice.ServicioUsuarioStub.AgregarUsuario;
 import webservice.ServicioUsuarioStub.AgregarUsuarioResponse;
+import webservice.ServicioUsuarioStub.LoginUsuario;
+import webservice.ServicioUsuarioStub.LoginUsuarioResponse;
 import webservice.ServicioUsuarioStub.UsuarioVO;
 import webservice.ServicioUsuarioStub.MostrarUsuario;
 import webservice.ServicioUsuarioStub.MostrarUsuarioResponse;
 import webservice.ServicioUsuarioStub.EliminarUsuario;
 import webservice.ServicioUsuarioStub.EliminarUsuarioResponse;
-import webservice.ServicioUsuarioStub.FiltrarUsuario;
-import webservice.ServicioUsuarioStub.FiltrarUsuarioResponse;
+
 
 
 
@@ -150,5 +159,60 @@ public class UserController {
 		}
         
 	}
+    @RequestMapping(value="/deleteContact",method =RequestMethod.POST)
+    public RedirectView eliminarContacto(@RequestParam String id){
+    	
+    	try{
+    		
+    		ServicioUsuarioStub ostub = new ServicioUsuarioStub();
+    		EliminarUsuario oeliminar = new EliminarUsuario();
+    		oeliminar.setId(Integer.parseInt(id));
+    		System.out.println(id);
+    		EliminarUsuarioResponse usuarioResponse = ostub.eliminarUsuario(oeliminar);
+    		String mensaje = usuarioResponse.get_return();
+    		System.out.println(mensaje);
+    		
+    		
+    		
+    		
+    		
+    	}catch(RemoteException e){
+    		
+    		e.printStackTrace();
+    	}
+    	return new RedirectView("showuser.html");
+    	
+    }
+    @RequestMapping("/login")
+    public ModelAndView loginUser() {
+         
+        return new ModelAndView("login", "command", new User());
+    }
+    @RequestMapping(value="/loginUser",method = RequestMethod.POST)
+    public ModelAndView loginUsuario(@ModelAttribute("user") @Valid  User user){
+    	
+    	try{
+    		ServicioUsuarioStub ostub = new ServicioUsuarioStub();
+    		LoginUsuario login = new LoginUsuario();
+    	    UsuarioVO usuario = new UsuarioVO();
+    	    usuario.setNombre(user.getName());
+    	    usuario.setClave(user.getPassword());
+    	    login.setUsuario(usuario);
+    	    LoginUsuarioResponse response = ostub.loginUsuario(login);
+    	    String mensaje = response.get_return();
+    	    System.out.println(mensaje);
+    		
+    		
+    		
+    		
+    	
+    	return new ModelAndView("index","mensaje","message");
+        
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 
+		return new ModelAndView("error", "message", "ERROR");
+	}
+}
 }

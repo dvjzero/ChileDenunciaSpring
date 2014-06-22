@@ -79,7 +79,11 @@
             <td>${user.mail}</td>
             <td>${user.ciudad}</td>
             <td>${user.sector}</td>
-
+<td> <form:form method ="post" action="deleteContact.html" >
+           <input type="hidden" name="id" value="${user.id}" />
+           <input type="submit" value="eliminar" />
+           
+           </form:form></td>
         </tr>
         
 	</c:forEach>

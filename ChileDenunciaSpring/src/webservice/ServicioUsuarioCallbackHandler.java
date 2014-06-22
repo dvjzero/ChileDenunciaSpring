@@ -61,19 +61,19 @@
             }
                 
            /**
-            * auto generated Axis2 call back method for filtrarUsuario method
-            * override this method for handling normal response from filtrarUsuario operation
+            * auto generated Axis2 call back method for loginUsuario method
+            * override this method for handling normal response from loginUsuario operation
             */
-           public void receiveResultfiltrarUsuario(
-                    webservice.ServicioUsuarioStub.FiltrarUsuarioResponse result
+           public void receiveResultloginUsuario(
+                    webservice.ServicioUsuarioStub.LoginUsuarioResponse result
                         ) {
            }
 
           /**
            * auto generated Axis2 Error handler
-           * override this method for handling error response from filtrarUsuario operation
+           * override this method for handling error response from loginUsuario operation
            */
-            public void receiveErrorfiltrarUsuario(java.lang.Exception e) {
+            public void receiveErrorloginUsuario(java.lang.Exception e) {
             }
                 
            /**
