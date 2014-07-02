@@ -1,5 +1,4 @@
 package spring3.controller;
- 
 //import net.viralpatel.spring3.form.Contact;
 import java.lang.ProcessBuilder.Redirect;
 import java.rmi.RemoteException;
@@ -8,23 +7,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import spring3.form.Contact;
 import spring3.form.ContactForm;
-
-
-
-
-
-
-
-
-
-
-
-
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,16 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
-
-
-
-
-
-
-
 import org.springframework.web.servlet.view.RedirectView;
-
 import webservice.ServicioDenunciaStub;
 import webservice.ServicioDenunciaStub.AgregarDenuncia;
 import webservice.ServicioDenunciaStub.AgregarDenunciaResponse;
@@ -184,6 +160,38 @@ public class ContactController {
 	}
     
     
+    @RequestMapping("/search")
+  	public ModelAndView showComplaints() {
+      	//String message = "Hola Mundo Spring se ha instalado correctamente";
+      	 List<Contact> contacts = new ArrayList<Contact>();      	    
+      	 ContactForm contactForm = new ContactForm();
+           
+           try {
+          	ServicioDenunciaStub oStub = new ServicioDenunciaStub();
+          	MostrarDenuncia oMostrarDenuncia = new MostrarDenuncia();
+          	
+          	MostrarDenunciaResponse objResponse = oStub.mostrarDenuncia(oMostrarDenuncia);
+          	DenunciaVO[] contacts2 = objResponse.get_return();
+          	
+//       		ServicioContactoStub oStub = new ServicioContactoStub();
+//          	 MostrarContacto oMostrarContacto = new MostrarContacto();
+//       		
+//       		MostrarContactoResponse objResponde =  oStub.mostrarContacto(oMostrarContacto);
+//       		ContactoVO[] contacts2= objResponde.get_return();
+       		
+  			 contactForm.setContacts(contacts2);
+  	         return new ModelAndView("searchcomprow" ,"contactForm", contactForm);
+  	         
+  	         
+  		} catch (RemoteException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+
+  			return new ModelAndView("error", "message", "ERROR");
+  		}
+          
+  	}
+    
     
     
 	@RequestMapping("/buscar")
@@ -223,11 +231,13 @@ public class ContactController {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-
+			
 			return new ModelAndView("error", "message", "ERROR");
 			
 		}
     }
+	
+	
 	
    
     

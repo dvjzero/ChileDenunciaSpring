@@ -4,42 +4,11 @@
 <html>
 <head> 
 
-<link href="./resources/css/bootstrap.css" rel="stylesheet">
-<script src="./resources/js/bootstrap.js"></script>
+
 <meta charset="UTF-8">
 <title>Registro de Contacto</title>
 </head>
 <body>
-	<div id="font">
-		<img src="./resources/img/fondo.jpg">
-	</div>
-	<div id="logo">
-		<img src="./resources/img/Logo.png" width=600 height=200 alt="">
-	</div>
-	<div
-		style="border: 1px solid black; margin-left: 85px; margin-right: 83px; background-color: #E8EDED; width: auto">
-		<ul class="nav nav-pills">
-			<li><a href="http://chiledenuncia.bl.ee/index.html"
-				style="padding-left: 20px; padding-right: 20px;">Inicio</a></li>
-			<li><a href="http://chiledenuncia.bl.ee/regusuario.html"
-				style="padding-left: 20px; padding-right: 20px;">Registro</a></li>
-			<li><a href="http://chiledenuncia.bl.ee/estadistica.html"
-				style="padding-left: 20px; padding-right: 20px;">Estadística</a></li>
-			<li class="active"><a
-				href="http://chiledenuncia.bl.ee/formdenuncia.html"
-				style="padding-left: 20px; padding-right: 20px;">Denunciar</a></li>
-			<li><a href="http://chiledenuncia.bl.ee/buscar.html"
-				style="padding-left: 20px; padding-right: 20px;">Buscar denuncia</a></li>
-			<li><a href="http://chiledenuncia.bl.ee/autoridades.html"
-				style="padding-left: 20px; padding-right: 20px;">Autoridades</a></li>
-			<li><a href="http://chiledenuncia.bl.ee/uso.html"
-				style="padding-left: 20px; padding-right: 20px;">Uso del sitio</a></li>
-			<li><a href="http://chiledenuncia.bl.ee/contacto.html"
-				style="padding-left: 20px; padding-right: 20px;">Contáctanos</a></li>
-			<li><a href="http://chiledenuncia.bl.ee/quienessomos.html"
-				style="padding-left: 20px; padding-right: 20px;">¿Quiénes somos?</a></li>
-		</ul>
-	</div>
 	${message}
 	<form:form method="post" action="addContact.html">
 		<div align="center">
@@ -112,58 +81,9 @@
 
 			</div>
 
-
 		</div>
 	</form:form>
-	<div align="center"
-		style="background-color: #4D7DCC; border: 1px solid black; margin-left: 305px; margin-right: 303px">
-		<h2>
-			<font color="Black" size="20">Formulario Denuncia</font>
-			
-		</h2>
-		<form:form method="post" action="addContact.html">
-
-			<table>
-				<tr>
-					<td><font color="White"><form:label path="type">
-								<spring:message code="label.type" />
-							</form:label></td>
-					<td><form:input path="type" /></td>
-				</tr>
-				<tr>
-					<td><font color="White"><form:label path="complaint">
-								<spring:message code="label.complaint" />
-							</form:label></td>
-					<td><form:input path="complaint" /></td>
-				</tr>
-				<tr>
-					<td><font color="White"><form:label path="city">
-								<spring:message code="label.city" />
-							</form:label></td>
-					<td><form:input path="city" /></td>
-				</tr>
-				<tr>
-					<td><font color="White"><form:label path="sector">
-								<spring:message code="label.sector" />
-							</form:label></td>
-					<td><form:input path="sector" /></td>
-				</tr>
-				<tr>
-					<td><font color="White"><form:label
-								path="users_creator">
-								<spring:message code="label.users_creator" />
-							</form:label></td>
-					<td><form:input path="users_creator" /></td>
-				</tr>
-
-				<tr>
-					<td colspan="2"><input type="submit" value="Agregar denuncia" />
-					</td>
-				</tr>
-			</table>
-
-		</form:form>
-	</div>
+	
 
 </body>
 </html>

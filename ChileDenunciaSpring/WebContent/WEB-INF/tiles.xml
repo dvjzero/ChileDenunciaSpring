@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="base.definition"
+        template="/WEB-INF/jsp/layout.jsp">
+        
+        <!-- <put-attribute name="menuseleccionado" value="<script>document.getElementById('index').class='active';</script>" /> -->
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp"/>
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp"/>
+    </definition>
+ 
+    <definition name="contact" extends="base.definition">
+        <put-attribute name="title" value="Registrar denuncia"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/contact.jsp"/>
+    </definition>
+    
+    <definition name="user" extends="base.definition">
+        <put-attribute name="title" value="Registro de usuario"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user.jsp"/>
+    </definition>
+    
+       <definition name="stats" extends="base.definition">
+        <put-attribute name="title" value="Estadísticas"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/stats.jsp"/>
+    </definition>
+    
+       <definition name="howto" extends="base.definition">
+        <put-attribute name="title" value="Uso del sitio"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/howto.jsp"/>
+    </definition>
+    
+    <definition name="showcontactrow" extends="base.definition">
+        <put-attribute name="title" value="User Manager"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/showcontactrow.jsp"/>
+    </definition>
+    
+    <definition name="searchcomprow" extends="base.definition">
+        <put-attribute name="title" value="Buscar denuncias"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/searchcomprow.jsp"/>
+    </definition>
+    
+    <definition name="saludo" extends="base.definition">
+        <put-attribute name="title" value="Ingreso exitoso"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/saludo.jsp"/>
+    </definition>
+    
+    <definition name="showuserrow" extends="base.definition">
+        <put-attribute name="title" value="Buscar usuarios"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/showuserrow.jsp"/>
+    </definition>
+    
+    <definition name="about" extends="base.definition">
+        <put-attribute name="title" value="Acerca del sitio"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/about.jsp"/>
+    </definition>
+
+	<definition name="contactus" extends="base.definition">
+        <put-attribute name="title" value="Contáctanos"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/contactus.jsp"/>
+    </definition>    
+    
+	<definition name="authorities" extends="base.definition">
+        <put-attribute name="title" value="Autoridades relacionadas"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/authorities.jsp"/>
+    </definition>   
+    
+    <definition name="login" extends="base.definition">
+        <put-attribute name="title" value="Acceso usuario"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"/>
+    </definition>
+
+    <definition name="index" extends="base.definition">
+        <put-attribute name="title" value="Inicio"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/index.jsp"/>
+    </definition>    
+ 
+</tiles-definitions>

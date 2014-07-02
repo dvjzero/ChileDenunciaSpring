@@ -1,8 +1,9 @@
+
 <!doctype html>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html lang="en" style="margin-top: 20px;">
+<html lang="en">
 <head>
 
 <meta charset="UTF-8">
@@ -18,40 +19,35 @@
 	src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
 
 
-<title>Usuarios</title>
 
 
 </head>
-
-
 <body>
-
 
 	<div align="center" style="background-color: #D4DBE6; margin-left: 85px; margin-right: 83px">
 
 		<table id="table_id" width="100%" class="display">
 			<thead>
 				<tr>
-
-					<th>Nombre</th>
-					<th>Correo</th>
+					<th>Usuario Creador</th>
+					<th>Tipo</th>
 					<th>Ciudad</th>
 					<th>Sector</th>
-					<th></th>
+					<th>Denuncia</th>
+
 				</tr>
+
 			</thead>
 			<tbody>
-				<c:forEach items="${userForm.users}" var="user" varStatus="status">
+				<c:forEach items="${contactForm.contacts}" var="contact" varStatus="status">
 
 					<tr class="success">
-						<td>${user.nombre}</td>
-						<td>${user.mail}</td>
-						<td>${user.ciudad}</td>
-						<td>${user.sector}</td>
-						<td><form:form method="post" action="deleteContact.html">
-								<input type="hidden" name="id" value="${user.id}" />
-								<input type="submit" value="eliminar" />
-							</form:form></td>
+						<td>${contact.usuario_creador}</td>
+						<td>${contact.tipo}</td>
+						<td>${contact.ciudad}</td>
+						<td>${contact.sector}</td>
+						<td>${contact.denuncia}</td>
+
 					</tr>
 
 				</c:forEach>
@@ -59,10 +55,8 @@
 
 		</table>
 
+
 	</div>
-
-
-
 
 
 </body>

@@ -7,17 +7,12 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-
-
-
-
-
-
-
 import spring3.form.User;
 import spring3.form.UserForm;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +20,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
-
-
 import org.springframework.web.servlet.view.RedirectView;
 
+import validator.UsuarioValidator;
+import webservice.ServicioUsuarioStub;
+import webservice.ServicioUsuarioStub.AgregarUsuario;
+import webservice.ServicioUsuarioStub.AgregarUsuarioResponse;
+import webservice.ServicioUsuarioStub.LoginUsuario;
+import webservice.ServicioUsuarioStub.LoginUsuarioResponse;
+import webservice.ServicioUsuarioStub.UsuarioVO;
+import webservice.ServicioUsuarioStub.MostrarUsuario;
+import webservice.ServicioUsuarioStub.MostrarUsuarioResponse;
+import webservice.ServicioUsuarioStub.EliminarUsuario;
+import webservice.ServicioUsuarioStub.EliminarUsuarioResponse;
+//import webservice.ServicioUsuarioStub.FiltrarUsuario;
+//import webservice.ServicioUsuarioStub.FiltrarUsuarioResponse;
 import webservice.ServicioDenunciaStub;
 import webservice.ServicioDenunciaStub.AgregarDenuncia;
 import webservice.ServicioDenunciaStub.AgregarDenunciaResponse;
@@ -42,28 +47,56 @@ import webservice.ServicioDenunciaStub.FiltrarDenuncia;
 import webservice.ServicioDenunciaStub.FiltrarDenunciaResponse;
 
 
-import webservice.ServicioUsuarioStub;
-import webservice.ServicioUsuarioStub.AgregarUsuario;
-import webservice.ServicioUsuarioStub.AgregarUsuarioResponse;
-import webservice.ServicioUsuarioStub.LoginUsuario;
-import webservice.ServicioUsuarioStub.LoginUsuarioResponse;
-import webservice.ServicioUsuarioStub.UsuarioVO;
-import webservice.ServicioUsuarioStub.MostrarUsuario;
-import webservice.ServicioUsuarioStub.MostrarUsuarioResponse;
-import webservice.ServicioUsuarioStub.EliminarUsuario;
-import webservice.ServicioUsuarioStub.EliminarUsuarioResponse;
-
-
 
 
  
 @Controller
 @SessionAttributes
 public class UserController {
- 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public ModelAndView addUser(@ModelAttribute("user") @Valid  User user, BindingResult result) {
+	private UsuarioValidator userValidator;
+	
+	/**
+	 * @return the userValidator
+	 */
+	public UsuarioValidator getUserValidator() {
+		return userValidator;
+	}
+
+	/**
+	 * @param userValidator the userValidator to set
+	 */
+	public void setUserValidator(UsuarioValidator userValidator) {
+		this.userValidator = userValidator;
+	}
+
+	@Autowired
+    public UserController(UsuarioValidator userValidator) {
+		
+		this.userValidator = userValidator;
+	}
+
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public ModelAndView addUser(@ModelAttribute("user") @Valid  User user, BindingResult result, Model model) {
          //BindingResult result, 
+	
+		userValidator.validate(user, result);
+		
+		
+		if (result.hasErrors()) {
+			String mensaje="Alguno de los datos esta mal ingresado."
+					+ "<br>Por ejemplo puede que haya ingresado letras en vez de numeros.";
+			
+			System.out.println("ERROR");
+			//return new ModelAndView("mensaje", "message", mensaje);
+			ModelAndView oTemp = new  ModelAndView("user");
+			oTemp.addObject("administrador", user);
+			oTemp.addObject("message", userValidator.getMensaje());
+			
+//			return new ModelAndView("user", "command", new User());
+			oTemp.addObject("errors",result.getFieldErrors());
+			System.out.println("ERROR ;) "+result.getFieldErrors());
+			return oTemp;
+		}
     	 if(result.hasErrors()) {
     		 System.out.println("ERROR");
              return new ModelAndView("contact");
@@ -109,11 +142,49 @@ public class UserController {
         //return "redirect:contacts.html";
         
     }
+    
+    @RequestMapping("/about")
+    public ModelAndView quienesSomos() {
+         
+        return new ModelAndView("about");
+    }
+    
+    @RequestMapping("/authorities")
+    public ModelAndView relAuthorities() {
+         
+        return new ModelAndView("authorities");
+    }
+    
+    @RequestMapping("/contactus")
+    public ModelAndView regContactus() {
+         
+        return new ModelAndView("contactus");
+    }
+    
+    @RequestMapping("/stats")
+    public ModelAndView cargaEstad() {
+         
+        return new ModelAndView("stats");
+    }
+    
+    @RequestMapping("/howto")
+    public ModelAndView usoSitio() {
+         
+        return new ModelAndView("howto");
+    }
+    
+    
+    @RequestMapping("/reguser")
+    public ModelAndView agregaUsuario() {
+         
+        return new ModelAndView("reguser");
+    }
+
      
     @RequestMapping("/users")
     public ModelAndView showUsers() {
          
-        return new ModelAndView("user", "command", new User());
+        return new ModelAndView("user", "administrador", new User());
     }
     
     @RequestMapping("/showuser")
