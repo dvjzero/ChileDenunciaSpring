@@ -25,7 +25,7 @@
 						<tr style="border:1px solid black">
 							<td  align="center"><a href="http://www.policia.cl" style="color:white"><font color="black">www.policia.cl</font></a></td>	
 
-							<td align="right"><a href="http://www.carabineros.cl" style="color:white"><font color="black">www.carabineros.cl</font></a></td>
+							<td align="center"><a href="http://www.carabineros.cl" style="color:white"><font color="black">www.carabineros.cl</font></a></td>
 							
 								<td align="center"><a href="http://www.temucochile.com/" style="color:white"><font color="black">www.temucochile.com</font></a></td>
 						</tr>
